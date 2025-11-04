@@ -11,6 +11,7 @@ public class Forgemaster implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
+		ModItems.registerModItems();
+		ModItemGroups.registerModItemGroups();
 	}
 }
