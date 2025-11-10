@@ -1,5 +1,7 @@
 package aug.forgemaster.mixin;
 
+import aug.forgemaster.effect.ModEffects;
+import aug.forgemaster.effect.ScorchedEffect;
 import aug.forgemaster.item.ModItems;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.block.BlockState;
@@ -7,6 +9,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -20,6 +24,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import static aug.forgemaster.effect.ModEffects.SCORCHED;
 
 @Mixin(PlayerEntity.class)
     public abstract class CheckCritHitMixin extends LivingEntity {
@@ -41,6 +47,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     )
     private void attack(Entity target, CallbackInfo ci, @Local(ordinal = 2) boolean isCritical) {
         if (isCritical && getWeaponStack().isOf(ModItems.ATTACCA) && !getWorld().isClient && !getItemCooldownManager().isCoolingDown(ModItems.ATTACCA)) {
+            var instance = new StatusEffectInstance(SCORCHED, 100, 1, false, true, true);
+            if (target instanceof LivingEntity living) {
+                living.addStatusEffect(instance);
+            }
             getItemCooldownManager().set(ModItems.ATTACCA, 60);
             Vec3d origin = getEyePos();
             Vec3d dir = target.getEyePos().subtract(origin).normalize();
