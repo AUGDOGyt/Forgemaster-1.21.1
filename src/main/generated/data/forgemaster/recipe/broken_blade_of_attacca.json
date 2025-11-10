@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": {
+      "item": "forgemaster:shard_of_attacca"
+    }
+  },
+  "pattern": [
+    "SS ",
+    "SS ",
+    "SS "
+  ],
+  "result": {
+    "count": 1,
+    "id": "forgemaster:broken_blade_of_attacca"
+  }
+}

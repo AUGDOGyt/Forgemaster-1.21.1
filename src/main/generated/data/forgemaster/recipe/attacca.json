@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "item": "forgemaster:broken_blade_of_attacca"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " B ",
+    " B ",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "forgemaster:attacca"
+  }
+}

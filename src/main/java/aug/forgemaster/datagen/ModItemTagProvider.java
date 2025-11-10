@@ -4,6 +4,7 @@ import aug.forgemaster.item.ModItems;
 import aug.forgemaster.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,12 +18,8 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ModTags.Items.FIRED_UP)
-                .add(ModItems.ATTACCA);
-                .add(Items.MACE);
+                .add(ModItems.ATTACCA)
+                .add(Items.MACE)
                 .add(Items.BLAZE_ROD);
-    }
-
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(Tags.)
     }
 }
