@@ -17,5 +17,6 @@ public class Forgemaster implements ModInitializer {
 		ModItems.registerModItems();
 		ModItemGroups.registerModItemGroups();
 		ModEffects.registerEffects();
+		ModEnchantmentEffects.registerEnchantmentEffects();
 	}
 }
