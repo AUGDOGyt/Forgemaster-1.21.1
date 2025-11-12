@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
 
-    public static final RegistryKey<ItemGroup> FORGEMASTER_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Forgemaster.MOD_ID, "forgemaster"))
+    public static final RegistryKey<ItemGroup> FORGEMASTER_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, Identifier.of(Forgemaster.MOD_ID, "forgemaster"));
     public static final ItemGroup FORGEMASTER = Registry.register(Registries.ITEM_GROUP,
         Identifier.of(Forgemaster.MOD_ID, "forgemaster"),
         FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.SHARD_OF_ATTACCA))
