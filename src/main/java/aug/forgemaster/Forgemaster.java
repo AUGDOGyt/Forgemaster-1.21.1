@@ -1,5 +1,6 @@
 package aug.forgemaster;
 
+import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.effect.ModEffects;
 import aug.forgemaster.enchantment.ModEnchantmentEffects;
 import aug.forgemaster.item.ModItemGroups;
@@ -16,6 +17,7 @@ public class Forgemaster implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 		ModItemGroups.registerModItemGroups();
 		ModEffects.registerEffects();
 		ModEnchantmentEffects.registerEnchantmentEffects();
