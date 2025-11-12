@@ -3,6 +3,7 @@
     "item.forgemaster.broken_attacca": "Broken Attacca",
     "item.forgemaster.attacca": "Attacca",
     "enchantment.forgemaster.fire_engine": "Fire Engine",
+    "enchantment.forgemaster.fire_engine.desc": "Fills the area with fire when hitting an entity from a high fall distance",
     "itemGroup.forgemaster.forgemaster": "Forgemaster",
     "effect.forgemaster.scorched": "Scorched"
 }
