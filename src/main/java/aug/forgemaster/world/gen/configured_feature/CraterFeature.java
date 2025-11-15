@@ -1,5 +1,6 @@
 package aug.forgemaster.world.gen.configured_feature;
 
+import aug.forgemaster.block.ModBlocks;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +16,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
 import static java.lang.Math.*;
 
 public class CraterFeature extends Feature<CraterFeatureConfig> {
@@ -33,8 +33,8 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
         var chunkRandom = new ChunkRandom(new CheckedRandom(world.getSeed()));
         var dps = DoublePerlinNoiseSampler.create(chunkRandom, -2, 1.0);
 
-        var width = 40;//config.ringWidth.get(random);
-        var height = 8;//config.ringHeight.get(random);
+        var width = 20;//config.ringWidth.get(random);
+        var height = 6;//config.ringHeight.get(random);
         var innerSphereRadius = 0;//config.innerSphereRadius.get(random);
         var noiseMultiplier = 1;//((height + width) / 4.0) * config.noiseMultiplier.get(random);
 
@@ -46,7 +46,7 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
             var existingState = world.getBlockState(pos);
             if (world.getDimension().logicalHeight() > pos.getY() /*&& !(existingState.isAir() || existingState.isReplaceable())*/) {
                 var state = shape(relative(pos.offset(Direction.Axis.Y, (int) (height * (4.5 / 5.0))), origin), innerSphereRadius, width, height, noiseMultiplier, dps, config.fillingProvider, random, pos);
-                if (state == null) {
+                if (state == null || state.isAir()) {
                     if (existingState.isIn(BlockTags.LOGS)) {
                         state = Blocks.BASALT.getStateWithProperties(existingState);
                     } else if (existingState.isIn(BlockTags.LEAVES)) {
@@ -59,6 +59,15 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
             }
         }
 
+        var anchor = origin;
+        while (true) {
+            if (!world.getBlockState(anchor.down()).isAir()) {
+                world.setBlockState(anchor, world.getBlockState(anchor.down()), 3);
+                world.setBlockState(anchor.up(), ModBlocks.ATTACCA_SHARD.getDefaultState(), 3);
+                break;
+            }
+            anchor = anchor.down();
+        }
         setBlockState(world, origin, Blocks.GLOWSTONE.getDefaultState());
         return true;
     }
@@ -71,7 +80,6 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
     }
 
     private BlockState shape(Vec3d pos, int innerSphereRadius, int widthR, int heightR, double noiseMultiplier, DoublePerlinNoiseSampler dps, BlockStateProvider fillingProvider, Random random, BlockPos blockPos) {
-//        if (!(pos.getZ() == 0 || pos.getX() == 0)) return null;
         var rad = widthR * widthR;
         var scale = 4;
         var x = ((pos.getX() * pos.getX()) / rad) * scale;
@@ -79,7 +87,7 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
         var z = ((pos.getZ() * pos.getZ()) / rad) * scale;
         var horizontalDist = sqrt(x + z);
 
-        if (horizontalDist >= 1.7) {
+        if (!(horizontalDist <= (1.4 * (y * -1))) && horizontalDist >= 1.7) {
             if (horizontalDist >= 2) {
                 return null;
             }
@@ -89,19 +97,16 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
         }
 
         var output = 0.75;
-
-        var absX = abs(horizontalDist);
-        if (absX <= 1) {
-            output = (horizontalDist * horizontalDist);
-        } else if (absX <= 1.5) {
-            output = ((-8 * pow((absX - 1.25), 2)) / 2) + 1.25;
-        } else if (absX <= 2) {
-            output = pow(absX - 2, 2) + 0.75;
+        if (pos.getY() <= 0) {
+            if (horizontalDist <= 1) {
+                output = (horizontalDist * horizontalDist);
+            } else if (horizontalDist <= 1.5) {
+                output = ((-8 * pow((horizontalDist - 1.25), 2)) / 2) + 1.25;
+            } else if (horizontalDist <= 2) {
+                output = pow(horizontalDist - 2, 2) + 0.75;
+            }
         }
 
-        if (pos.getY() > 1) {
-            output = abs(output);
-        }
         var noise = dps.sample(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         var ctrl = abs(y);
         if (noiseMultiplier != 0) {
@@ -109,58 +114,22 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
         }
 
         var check = output > ctrl;
-        if (pos.getY() == 1 && pos.getX() >= 0 && pos.getX() < 4) {
-            LOGGER.info("=-=");
-            LOGGER.info("Dist: [{}]", horizontalDist);
-            LOGGER.info("Output: [{}]", output);
-            LOGGER.info("Pos: [{}]", pos);
-            LOGGER.info("Math: [{}, {}, {}]", x, y, z);
-            LOGGER.info("Ctrl: [{}]", ctrl);
-            LOGGER.info("");
-        }
 
+        if (horizontalDist <= min(0.75 * (-y + .5), 1.8) && !check) {
+            return Blocks.AIR.getDefaultState();
+        }
 
         if (check) {
             var sample = noise * noiseMultiplier * 10;
-            if (sample < -1.9) {
+            if (sample < -3) {
                 return Blocks.MAGMA_BLOCK.getDefaultState();
             }
-            if (sample > 0.5) {
+            if (sample > 3) {
                 return Blocks.BLACKSTONE.getDefaultState();
             }
             return Blocks.NETHERRACK.getDefaultState();
         }
-        if (output >= -100) {
-//            return Blocks.GLASS.getDefaultState();
-        }
 
-        /*double x = pos.getX() * pos.getX() / (widthR * widthR);
-        double z = pos.getZ() * pos.getZ() / (widthR * widthR);
-        var horizontalDist = 1;// sqrt(x + (pos.getY() * pos.getY() / (heightR * heightR)) + z);
-        var horizontalDistanceFromCenter = sqrt(x + z);
-
-        var noise = dps.sample(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-
-//        if (noiseMultiplier != 0.0)
-//            horizontalDist += ((noise * noiseMultiplier) * 0.1) * (horizontalDist * horizontalDist);
-
-        if (horizontalDist <= 1) {
-//            if (horizontalDist <= ((double) innerSphereRadius / widthR)) {
-//                return Blocks.AIR.getDefaultState();
-//            }
-//            if (noise > -0.01) {
-//                return Blocks.BLACKSTONE.getDefaultState();
-//            }
-//            if (noise < -0.5) {
-//                return Blocks.MAGMA_BLOCK.getDefaultState();
-//            }
-            return Blocks.NETHERRACK.getDefaultState();
-        }
-        */
         return null;
-    }
-
-    private int shapeDistanceFromCenter(int radiusToRingCenter, int width, int height) {
-        return (int) (radiusToRingCenter + (Math.max(width, height) / 2.0));
     }
 }
