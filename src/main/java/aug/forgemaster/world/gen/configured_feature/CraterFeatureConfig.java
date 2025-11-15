@@ -47,11 +47,11 @@ public class CraterFeatureConfig implements FeatureConfig {
                             .fieldOf("radius_to_ring_center")
                             .orElse(UniformIntProvider.create(4, 13))
                             .forGetter(config -> config.radiusToRingCenter),
-                    IntProvider.createValidatingCodec(-20, 20)
+                    IntProvider.createValidatingCodec(-200, 200)
                             .fieldOf("ring_width")
                             .orElse(UniformIntProvider.create(2, 6))
                             .forGetter(config -> config.ringWidth),
-                    IntProvider.createValidatingCodec(1, 20)
+                    IntProvider.createValidatingCodec(1, 200)
                             .fieldOf("ring_height")
                             .orElse(UniformIntProvider.create(2, 6))
                             .forGetter(config -> config.ringHeight),
