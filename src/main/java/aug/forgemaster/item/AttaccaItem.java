@@ -1,14 +1,17 @@
 package aug.forgemaster.item;
 
 import aug.forgemaster.effect.ModEffects;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import org.lwjgl.glfw.GLFW;
 
 public class AttaccaItem extends SwordItem implements DualModelItem {
@@ -26,6 +29,17 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
     @Override
     public Identifier guiModel() {
         return Registries.ITEM.getId(this).withSuffixedPath("_2d");
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (world.isClient && selected && stack.getOrDefault(ModItemComponentTypes.ATTACCA_CHARGE, 0) >= MAX_CHARGE) {
+            world.addParticle(
+                    ParticleTypes.FLAME,
+                    entity.getParticleX(1), entity.getRandomBodyY(), entity.getParticleZ(1),
+                    0, 0, 0
+            );
+        }
     }
 
     @Override
