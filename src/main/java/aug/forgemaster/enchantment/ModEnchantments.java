@@ -1,7 +1,6 @@
 package aug.forgemaster.enchantment;
 
 import aug.forgemaster.Forgemaster;
-import aug.forgemaster.effect.ModEffects;
 import aug.forgemaster.util.ModTags;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -9,6 +8,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelBasedValue;
 import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
 import net.minecraft.enchantment.effect.entity.ApplyMobEffectEnchantmentEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -53,11 +53,11 @@ public class ModEnchantments {
                 .addEffect(EnchantmentEffectComponentTypes.POST_ATTACK,
                         EnchantmentEffectTarget.ATTACKER, EnchantmentEffectTarget.ATTACKER,
                         new ApplyMobEffectEnchantmentEffect(
-                                RegistryEntryList.of(ModEffects.SPARKED),
+                                RegistryEntryList.of(StatusEffects.FIRE_RESISTANCE),
                                 EnchantmentLevelBasedValue.constant(30),
                                 EnchantmentLevelBasedValue.constant(30),
-                                EnchantmentLevelBasedValue.constant(1),
-                                EnchantmentLevelBasedValue.constant(1)
+                                EnchantmentLevelBasedValue.constant(0),
+                                EnchantmentLevelBasedValue.constant(0)
                         )));
     }
 

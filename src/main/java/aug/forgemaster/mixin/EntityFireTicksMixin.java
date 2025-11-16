@@ -6,13 +6,10 @@ import aug.forgemaster.item.ModItemComponentTypes;
 import aug.forgemaster.item.ModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -20,9 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public abstract class EntityFireTicksMixin {
-    @Unique
-    public abstract boolean hasStatusEffect(RegistryEntry<StatusEffect> effect);
-
     @ModifyArg(
             method = "baseTick",
             at = @At(
@@ -32,7 +26,7 @@ public abstract class EntityFireTicksMixin {
             index = 1
     )
     private float increaseFireDamage(float amount) {
-        if (hasStatusEffect(ModEffects.SPARKED)) {
+        if ((Object) this instanceof LivingEntity living && living.hasStatusEffect(ModEffects.SPARKED)) {
             amount += 1.5f;
         }
 
