@@ -29,6 +29,8 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        target.addStatusEffect(new StatusEffectInstance(ModEffects.SPARKED, 200));
+
         if (stack.getOrDefault(ModItemComponentTypes.ATTACCA_CHARGE, 0) >= MAX_CHARGE) {
             stack.set(ModItemComponentTypes.ATTACCA_CHARGE, 0);
             target.addStatusEffect(new StatusEffectInstance(ModEffects.SCORCHED, 100));
