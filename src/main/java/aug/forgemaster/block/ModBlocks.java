@@ -3,6 +3,7 @@ package aug.forgemaster.block;
 import aug.forgemaster.Forgemaster;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -12,6 +13,7 @@ import net.minecraft.sound.BlockSoundGroup;
 public class ModBlocks {
 
     public static final Block ATTACCA_SHARD = registerBlock("attacca_shard", new AttaccaShardBlock(AbstractBlock.Settings.create().strength(0.5f).sounds(BlockSoundGroup.NETHERITE).noCollision()), new Item.Settings().fireproof());
+    public static final Block GREEK_FIRE = registerBlock("greek_fire", new GreekFireBlock(AbstractBlock.Settings.copy(Blocks.FIRE)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

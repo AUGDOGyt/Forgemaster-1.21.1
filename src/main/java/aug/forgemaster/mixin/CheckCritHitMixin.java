@@ -1,9 +1,9 @@
 package aug.forgemaster.mixin;
 
+import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.item.ModItems;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -54,7 +54,7 @@ public abstract class CheckCritHitMixin extends LivingEntity {
                     pos = pos.down();
                 }
 
-                getWorld().setBlockState(pos, Blocks.FIRE.getDefaultState());
+                getWorld().setBlockState(pos, ModBlocks.GREEK_FIRE.getDefaultState());
             }
         }
     }

@@ -1,9 +1,9 @@
 package aug.forgemaster.enchantment;
 
+import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.effect.ModEffects;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentEffectContext;
 import net.minecraft.enchantment.EnchantmentLevelBasedValue;
 import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
@@ -57,7 +57,7 @@ public record FireEngineEnchantmentEffect(EnchantmentLevelBasedValue radiusMulti
                     }
 
                     if (pos.isWithinDistance(center, radius)) {
-                        world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+                        world.setBlockState(pos, ModBlocks.GREEK_FIRE.getDefaultState());
 
                         if (Math.random() < 0.1) {
                             world.spawnParticles(
