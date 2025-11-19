@@ -3,11 +3,11 @@
   "package": "aug.forgemaster.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BlockFireTicksMixin",
-    "BonusAttackDamageMixin",
-    "CheckCritHitMixin",
-    "DisableRegenMixin",
-    "EntityFireTicksMixin"
+    "AbstractFireBlockMixin",
+    "EntityMixin",
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "SwordItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -16,8 +16,8 @@
     "requireAnnotations": true
   },
   "client": [
-    "HeartTypeMixin",
-    "ItemRendererMixin",
-    "ModelLoaderMixin"
+    "client.HeartTypeMixin",
+    "client.ItemRendererMixin",
+    "client.ModelLoaderMixin"
   ]
 }

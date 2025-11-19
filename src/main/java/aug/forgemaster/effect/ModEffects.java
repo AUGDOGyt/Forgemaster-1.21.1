@@ -9,13 +9,13 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 public class ModEffects {
 
-    public static final RegistryEntry<StatusEffect> SCORCHED = registerStatusEffect("scorched",
-            new ScorchedEffect(StatusEffectCategory.HARMFUL, 0x511515));
+    public static final RegistryEntry<StatusEffect> COOLANT = register("coolant",
+            new CoolantEffect(StatusEffectCategory.BENEFICIAL, 0xA8F7FF));
 
-    public static final RegistryEntry<StatusEffect> SPARKED = registerStatusEffect("sparked",
-            new ScorchedEffect(StatusEffectCategory.HARMFUL, 0x511515));
+    public static final RegistryEntry<StatusEffect> SPARKED = register("sparked",
+            new SparkedEffect(StatusEffectCategory.HARMFUL, 0xF48522));
 
-    private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
+    private static RegistryEntry<StatusEffect> register(String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Forgemaster.id(name), statusEffect);
     }
 

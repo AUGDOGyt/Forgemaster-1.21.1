@@ -1,4 +1,4 @@
-package aug.forgemaster.mixin;
+package aug.forgemaster.mixin.client;
 
 import aug.forgemaster.item.DualModelItem;
 import net.minecraft.client.render.model.ModelLoader;
@@ -23,7 +23,7 @@ public abstract class ModelLoaderMixin {
                     ordinal = 1
             )
     )
-    private void onInit(CallbackInfo ci) {
+    private void loadItemModel(CallbackInfo ci) {
         Registries.ITEM.forEach(item -> {
             if (item instanceof DualModelItem dual) {
                 loadItemModel(ModelIdentifier.ofInventoryVariant(dual.worldModel()));

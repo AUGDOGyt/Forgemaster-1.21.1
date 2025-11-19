@@ -49,7 +49,6 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
 
         if (stack.getOrDefault(ModItemComponentTypes.ATTACCA_CHARGE, 0) >= MAX_CHARGE) {
             stack.set(ModItemComponentTypes.ATTACCA_CHARGE, 0);
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.SCORCHED, 100));
         }
 
         return true;

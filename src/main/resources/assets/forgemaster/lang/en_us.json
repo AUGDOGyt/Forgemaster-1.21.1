@@ -8,6 +8,6 @@
     "enchantment.forgemaster.coolant_system": "Coolant System",
     "enchantment.forgemaster.coolant_system.desc": "Grants you fire resistance when you attack",
     "itemGroup.forgemaster.forgemaster": "Forgemaster",
-    "effect.forgemaster.scorched": "Scorched",
+    "effect.forgemaster.coolant": "Coolant",
     "effect.forgemaster.sparked": "Sparked"
 }

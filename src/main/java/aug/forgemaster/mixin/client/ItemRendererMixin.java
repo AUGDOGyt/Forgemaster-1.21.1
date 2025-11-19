@@ -1,4 +1,4 @@
-package aug.forgemaster.mixin;
+package aug.forgemaster.mixin.client;
 
 import aug.forgemaster.item.DualModelItem;
 import com.llamalad7.mixinextras.sugar.Local;

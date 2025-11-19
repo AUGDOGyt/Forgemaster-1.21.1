@@ -1,6 +1,7 @@
 package aug.forgemaster.enchantment;
 
 import aug.forgemaster.Forgemaster;
+import aug.forgemaster.effect.ModEffects;
 import aug.forgemaster.util.ModTags;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
@@ -8,7 +9,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelBasedValue;
 import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
 import net.minecraft.enchantment.effect.entity.ApplyMobEffectEnchantmentEffect;
-import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.enchantment.effect.value.AddEnchantmentEffect;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -23,7 +24,6 @@ public class ModEnchantments {
             RegistryKey.of(RegistryKeys.ENCHANTMENT, Forgemaster.id("coolant_system"));
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
-        var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
         var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
 
         register(registerable, FIRE_ENGINE, Enchantment.builder(Enchantment.definition(
@@ -36,9 +36,7 @@ public class ModEnchantments {
                         2,
                         AttributeModifierSlot.MAINHAND
                 ))
-                .addEffect(EnchantmentEffectComponentTypes.POST_ATTACK,
-                        EnchantmentEffectTarget.ATTACKER, EnchantmentEffectTarget.VICTIM,
-                        new FireEngineEnchantmentEffect(EnchantmentLevelBasedValue.linear(1))));
+                        .addNonListEffect(ModEnchantmentEffects.FIRE_ENGINE_STRENGTH, new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1, 0.5f))));
 
         register(registerable, COOLANT_SYSTEM, Enchantment.builder(Enchantment.definition(
                         items.getOrThrow(ModTags.Items.FIRED_UP),
@@ -53,7 +51,7 @@ public class ModEnchantments {
                 .addEffect(EnchantmentEffectComponentTypes.POST_ATTACK,
                         EnchantmentEffectTarget.ATTACKER, EnchantmentEffectTarget.ATTACKER,
                         new ApplyMobEffectEnchantmentEffect(
-                                RegistryEntryList.of(StatusEffects.FIRE_RESISTANCE),
+                                RegistryEntryList.of(ModEffects.COOLANT),
                                 EnchantmentLevelBasedValue.linear(10, 10),
                                 EnchantmentLevelBasedValue.linear(10, 10),
                                 EnchantmentLevelBasedValue.constant(0),

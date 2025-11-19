@@ -21,7 +21,7 @@
             "base": 10.0,
             "per_level_above_first": 10.0
           },
-          "to_apply": "minecraft:fire_resistance"
+          "to_apply": "forgemaster:coolant"
         },
         "enchanted": "attacker"
       }

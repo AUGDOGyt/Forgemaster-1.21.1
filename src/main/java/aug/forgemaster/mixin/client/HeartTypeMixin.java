@@ -1,8 +1,8 @@
-package aug.forgemaster.mixin;
+package aug.forgemaster.mixin.client;
 
 import aug.forgemaster.Forgemaster;
 import aug.forgemaster.effect.ModEffects;
-import aug.forgemaster.effect.ScorchedEffect;
+import aug.forgemaster.effect.SparkedEffect;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
@@ -45,7 +45,7 @@ public abstract class HeartTypeMixin {
     private static void clinit(CallbackInfo ci) {
         InGameHud.HeartType[] arr = new InGameHud.HeartType[field_33952.length + 1];
         System.arraycopy(field_33952, 0, arr, 0, field_33952.length);
-        ScorchedEffect.HEART_TYPE = arr[field_33952.length] = invokeNew(
+        SparkedEffect.HEART_TYPE = arr[field_33952.length] = invokeNew(
                 "FORGEMASTER_SCORCHED", field_33952.length,
                 Forgemaster.id("hud/heart/scorched_full"),
                 Forgemaster.id("hud/heart/scorched_full_blinking"),
@@ -65,8 +65,8 @@ public abstract class HeartTypeMixin {
             cancellable = true
     )
     private static void fromPlayerState(PlayerEntity player, CallbackInfoReturnable<InGameHud.HeartType> cir) {
-        if (player.hasStatusEffect(ModEffects.SCORCHED)) {
-            cir.setReturnValue(ScorchedEffect.HEART_TYPE);
+        if (player.hasStatusEffect(ModEffects.SPARKED)) {
+            cir.setReturnValue(SparkedEffect.HEART_TYPE);
         }
     }
 }

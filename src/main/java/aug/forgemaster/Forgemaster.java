@@ -3,6 +3,7 @@ package aug.forgemaster;
 import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.effect.ModEffects;
 import aug.forgemaster.enchantment.ModEnchantmentEffects;
+import aug.forgemaster.entity.ModEntities;
 import aug.forgemaster.item.ModItemComponentTypes;
 import aug.forgemaster.item.ModItemGroups;
 import aug.forgemaster.item.ModItems;
@@ -31,6 +32,7 @@ public class Forgemaster implements ModInitializer {
 		ModEffects.register();
 		ModEnchantmentEffects.register();
 		ModItemComponentTypes.register();
+		ModEntities.register();
 
 		LootTableEvents.MODIFY.register((key, builder, source, registries) -> {
 			if (key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {

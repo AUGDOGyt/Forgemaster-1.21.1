@@ -18,6 +18,7 @@ public class ForgemasterDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModRegistryDataGeneration::new);
 		pack.addProvider(ModBlockLootTableProvider::new);
 		pack.addProvider(ModEnchantmentTagProvider::new);
+		pack.addProvider(ModAdvancementProvider::new);
 	}
 
 	@Override

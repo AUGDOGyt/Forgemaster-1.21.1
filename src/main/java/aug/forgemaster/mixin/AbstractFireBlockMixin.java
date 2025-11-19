@@ -1,10 +1,9 @@
 package aug.forgemaster.mixin;
 
-import aug.forgemaster.effect.ModEffects;
 import aug.forgemaster.item.AttaccaItem;
 import aug.forgemaster.item.ModItemComponentTypes;
 import aug.forgemaster.item.ModItems;
-import net.minecraft.entity.Entity;
+import net.minecraft.block.AbstractFireBlock;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
@@ -12,29 +11,12 @@ import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Entity.class)
-public abstract class EntityFireTicksMixin {
-    @ModifyArg(
-            method = "baseTick",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"
-            ),
-            index = 1
-    )
-    private float increaseFireDamage(float amount) {
-        if ((Object) this instanceof LivingEntity living && living.hasStatusEffect(ModEffects.SPARKED)) {
-            amount += 1.5f;
-        }
-
-        return amount;
-    }
-
+@Mixin(AbstractFireBlock.class)
+public class AbstractFireBlockMixin {
     @Inject(
-            method = "baseTick",
+            method = "onEntityCollision",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"
