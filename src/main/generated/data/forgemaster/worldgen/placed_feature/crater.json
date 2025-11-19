@@ -1,0 +1,14 @@
+{
+  "feature": "forgemaster:crater",
+  "placement": [
+    {
+      "type": "minecraft:random_offset",
+      "xz_spread": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 5,
+        "min_inclusive": 1
+      },
+      "y_spread": 0
+    }
+  ]
+}

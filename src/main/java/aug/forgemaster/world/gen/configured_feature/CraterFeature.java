@@ -5,9 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.math.random.CheckedRandom;
@@ -70,16 +68,6 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
             var realPos = origin.add((int) -pos.x, (int) -pos.y, (int) -pos.z);
             var wgPos = min(world.getChunk(realPos).sampleHeightmap(Heightmap.Type.OCEAN_FLOOR_WG, realPos.getX(), realPos.getZ()), world.getChunk(realPos).sampleHeightmap(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, realPos.getX(), realPos.getZ()));
 
-            var movePos = new BlockPos.Mutable(realPos.getX(), wgPos + 1, realPos.getZ());
-            while (true) {
-                var testState = world.getBlockState(movePos.move(Direction.DOWN));
-                if (!(testState.isIn(BlockTags.REPLACEABLE) || testState.isIn(BlockTags.LOGS)) || testState.isIn(BlockTags.OVERWORLD_CARVER_REPLACEABLES)) {
-//                    setBlockState(world, movePos.toImmutable().up(), Blocks.OAK_LEAVES.getDefaultState());
-                    wgPos = movePos.toImmutable().offset(Direction.DOWN).getY();
-                    break;
-                }
-            }
-
             realPos = realPos.up(wgPos - origin.getY()).up(height / -3);
 
 
@@ -90,6 +78,7 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
 
             setBlockState(world, realPos, state);
         }
+
         for (var entry : pairMap.entrySet()) {
             var key = entry.getKey();
             var pos = new BlockPos(key.getFirst(), entry.getValue(), key.getSecond());
@@ -99,8 +88,7 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
 
         }
 
-
-        var anchor = origin;
+        var anchor = origin.up(1);
         while (true) {
             if (!world.getBlockState(anchor.down()).isAir()) {
                 world.setBlockState(anchor, ModBlocks.ATTACCA_SHARD.getDefaultState(), 3);
