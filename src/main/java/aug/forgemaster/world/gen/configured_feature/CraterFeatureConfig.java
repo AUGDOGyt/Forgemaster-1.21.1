@@ -5,59 +5,79 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.math.floatprovider.ConstantFloatProvider;
 import net.minecraft.util.math.floatprovider.FloatProvider;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 public class CraterFeatureConfig implements FeatureConfig {
-    public final BlockStateProvider fillingProvider;
-    public TagKey<Block> replaceable;
-    public final IntProvider radiusToRingCenter;
-    public final IntProvider ringWidth;
-    public final IntProvider ringHeight;
-    public final FloatProvider noiseMultiplier;
+    public TagKey<Block> cantReplaceable;
+    public final IntProvider width;
+    public final IntProvider height;
+    public final IntProvider blockClearRage;
+    public final FloatProvider ringSize;
+    public final FloatProvider ringHeight;
+    public final FloatProvider thickness;
+    public final FloatProvider offsetNoiseMultiplier;
+    public final FloatProvider textureNoiseMultiplier;
 
     public CraterFeatureConfig(
-            BlockStateProvider fillingProvider,
-            TagKey<Block> replaceable,
-            IntProvider radiusToRingCenter,
-            IntProvider ringWidth,
-            IntProvider ringHeight,
-            FloatProvider noiseMultiplier
+            TagKey<Block> cantReplaceable,
+            IntProvider width, IntProvider height, IntProvider blockClearRage,
+            FloatProvider ringSize, FloatProvider ringHeight, FloatProvider thickness,
+            FloatProvider offsetNoiseMultiplier, FloatProvider textureNoiseMultiplier
     ) {
-        this.fillingProvider = fillingProvider;
-        this.replaceable = replaceable;
-        this.radiusToRingCenter = radiusToRingCenter;
-        this.ringWidth = ringWidth;
+        this.cantReplaceable = cantReplaceable;
+        this.width = width;
+        this.height = height;
+        this.blockClearRage = blockClearRage;
+        this.ringSize = ringSize;
         this.ringHeight = ringHeight;
-        this.noiseMultiplier = noiseMultiplier;
+        this.thickness = thickness;
+        this.offsetNoiseMultiplier = offsetNoiseMultiplier;
+        this.textureNoiseMultiplier = textureNoiseMultiplier;
     }
 
     public static final Codec<CraterFeatureConfig> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
-                    BlockStateProvider.TYPE_CODEC
-                            .fieldOf("filling_provider")
-                            .forGetter(config -> config.fillingProvider),
                     TagKey.codec(RegistryKeys.BLOCK)
-                            .fieldOf("replaceable")
-                            .forGetter(config -> config.replaceable),
-                    IntProvider.createValidatingCodec(-20, 20)
-                            .fieldOf("radius_to_ring_center")
-                            .orElse(UniformIntProvider.create(4, 13))
-                            .forGetter(config -> config.radiusToRingCenter),
-                    IntProvider.createValidatingCodec(-200, 200)
-                            .fieldOf("ring_width")
-                            .orElse(UniformIntProvider.create(2, 6))
-                            .forGetter(config -> config.ringWidth),
-                    IntProvider.createValidatingCodec(1, 200)
+                            .fieldOf("cant_replaceable")
+                            .forGetter(config -> config.cantReplaceable),
+
+                    IntProvider.createValidatingCodec(8, 128)
+                            .fieldOf("width")
+                            .orElse(ConstantIntProvider.create(16))
+                            .forGetter(config -> config.width),
+                    IntProvider.createValidatingCodec(2, 128)
+                            .fieldOf("height")
+                            .orElse(ConstantIntProvider.create(8))
+                            .forGetter(config -> config.height),
+                    IntProvider.createValidatingCodec(0, 128)
+                            .fieldOf("block_clear_rage")
+                            .orElse(ConstantIntProvider.create(32))
+                            .forGetter(config -> config.blockClearRage),
+
+                    FloatProvider.createValidatedCodec(-128, 128)
+                            .fieldOf("ring_size")
+                            .orElse(ConstantFloatProvider.create(4))
+                            .forGetter(config -> config.ringSize),
+                    FloatProvider.createValidatedCodec(-128, 128)
                             .fieldOf("ring_height")
-                            .orElse(UniformIntProvider.create(2, 6))
+                            .orElse(ConstantFloatProvider.create(2))
                             .forGetter(config -> config.ringHeight),
-                    FloatProvider.createValidatedCodec(0f, 10f)
-                            .fieldOf("noise_multiplier")
-                            .forGetter(config -> config.noiseMultiplier)
+                    FloatProvider.createValidatedCodec(0, 10)
+                            .fieldOf("thickness")
+                            .orElse(ConstantFloatProvider.create(0.5f))
+                            .forGetter(config -> config.thickness),
+
+                    FloatProvider.createValidatedCodec(-10, 10)
+                            .fieldOf("offset_noise_multiplier")
+                            .forGetter(config -> config.offsetNoiseMultiplier),
+                    FloatProvider.createValidatedCodec(-10, 10)
+                            .fieldOf("texture_noise_multiplier")
+                            .forGetter(config -> config.textureNoiseMultiplier)
+
             ).apply(instance, CraterFeatureConfig::new)
     );
 }

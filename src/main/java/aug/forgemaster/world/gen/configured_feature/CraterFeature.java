@@ -27,41 +27,43 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
     @Override
     public boolean generate(FeatureContext<CraterFeatureConfig> context) {
         var origin = context.getOrigin();
-        var random = context.getRandom();
         var world = context.getWorld();
         var config = context.getConfig();
 
-        var chunkRandom = new ChunkRandom(new CheckedRandom(world.getSeed()));
-        var dps = DoublePerlinNoiseSampler.create(chunkRandom, -2, 1.0);
+        var random = new ChunkRandom(new CheckedRandom(world.getSeed()));
 
-        var width = 20;//config.ringWidth.get(random);
-        var height = 6;//config.ringHeight.get(random);
-        var texturesNoise = 1;//((height + width) / 4.0) * config.noiseMultiplier.get(random);
-        var blockNoise = 0.25;//((height + width) / 4.0) * config.noiseMultiplier.get(random);
+        var width = config.width.get(random);
+        var widthSqr = width * width;
+        var height = config.height.get(random);
+        var blockClearRage = config.blockClearRage.get(random);
 
-        var blockClearRage = height * 2;
+
+        var data = new ShapeData(
+                widthSqr, height,
+                config.ringSize.get(random), config.ringHeight.get(random), config.thickness.get(random),
+                config.textureNoiseMultiplier.get(random), config.offsetNoiseMultiplier.get(random),
+                DoublePerlinNoiseSampler.create(random, -2, 1.0), random
+        );
 
         var area = BlockPos.iterate(origin.add(width, height, width), origin.add(-width, -height, -width));
         var map = new HashMap<Vec3d, BlockState>();
         for (BlockPos pos : area) {
             if (world.getDimension().logicalHeight() > pos.getY()) {
                 var rPos = relative(pos, origin);
-                var state = shape(rPos, width, height, texturesNoise, blockNoise, dps, random, pos);
+                var state = shape(rPos, pos, data);
                 if (state != null) {
                     map.put(rPos, state);
                 }
             }
         }
 
-        var radius = width * width;
-
         var pairMap = new HashMap<Pair<Integer, Integer>, Integer>();
         for (var entry : map.entrySet()) {
             var pos = entry.getKey();
             var state = entry.getValue();
 
-            var x = (pos.getX() * pos.getX()) / radius;
-            var z = (pos.getZ() * pos.getZ()) / radius;
+            var x = (pos.getX() * pos.getX()) / widthSqr;
+            var z = (pos.getZ() * pos.getZ()) / widthSqr;
             var horizontalDist = sqrt(x + z);
 
 
@@ -106,37 +108,33 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
         return new Vec3d(x, y, z);
     }
 
-    private BlockState shape(Vec3d pos, int widthR, int heightR, double texturesNoise, double blockNoise, DoublePerlinNoiseSampler dps, Random random, BlockPos blockPos) {
-        var radius = widthR * widthR;
-
-        var x = (pos.getX() * pos.getX()) / radius;
-        var scaledY = pos.getY() / heightR;
-        var z = (pos.getZ() * pos.getZ()) / radius;
+    private BlockState shape(Vec3d pos, BlockPos blockPos, ShapeData data) {
+        var x = (pos.getX() * pos.getX()) / data.widthSqr;
+        var scaledY = pos.getY() / data.height;
+        var z = (pos.getZ() * pos.getZ()) / data.widthSqr;
         var horizontalDist = sqrt(x + z);
 
         if (horizontalDist >= 0.85) {
             if (horizontalDist >= 1) {
                 return null;
             }
-            if (random.nextBetween(0, (int) (2 * horizontalDist)) > 0) {
+            if (data.random.nextBetween(0, (int) (2 * horizontalDist)) > 0) {
                 return null;
             }
         }
 
-        var ringSize = 5;
-        var ringHeight = 2;
-        var bounds = 0.5;
-        var calcPos = (cos(horizontalDist * ringSize)) / (ringHeight);
+        var thickness = data.thickness;
+        var calcPos = (cos(horizontalDist * data.ringSize)) / (data.ringHeight);
 
-        var noise = dps.sample(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-        if (blockNoise != 0) {
-            bounds += (horizontalDist * horizontalDist * noise * blockNoise);
+        var noise = data.dps.sample(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+        if (data.blockNoise != 0) {
+            thickness += (horizontalDist * horizontalDist * noise * data.blockNoise);
         }
 
-        var isInShape = scaledY >= (calcPos - bounds) && scaledY <= calcPos + bounds;
+        var isInShape = scaledY >= (calcPos - thickness) && scaledY <= calcPos + thickness;
 
         if (isInShape) {
-            var sample = noise * texturesNoise * 10;
+            var sample = noise * data.texturesNoise * 10;
             if (sample < -3) {
                 return Blocks.MAGMA_BLOCK.getDefaultState();
             }
@@ -146,7 +144,15 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
             return Blocks.NETHERRACK.getDefaultState();
         }
 
-
         return null;
+    }
+
+    record ShapeData(
+            int widthSqr, int height,
+            double ringSize, double ringHeight,
+            double thickness,
+            double texturesNoise, double blockNoise,
+            DoublePerlinNoiseSampler dps, Random random
+    ) {
     }
 }

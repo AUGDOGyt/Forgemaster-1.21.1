@@ -12,7 +12,6 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.RandomOffsetPlacementModifier;
-import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 import static aug.forgemaster.Forgemaster.id;
 import static aug.forgemaster.util.Helpers.key;
@@ -34,12 +33,17 @@ public class ModFeatures {
                 .add(Blocks.MAGMA_BLOCK.getDefaultState(), 3);
 
         ConfiguredFeatures.register(c, C_CRATER, CRATER, new CraterFeatureConfig(
-                new WeightedBlockStateProvider(filling),
-                BlockTags.MOSS_REPLACEABLE,
-                ConstantIntProvider.create(5),
-                ConstantIntProvider.create(18),
-                ConstantIntProvider.create(20),
-                ConstantFloatProvider.create(4)
+                BlockTags.GEODE_INVALID_BLOCKS,
+                ConstantIntProvider.create(20), // Width
+                ConstantIntProvider.create(6), // Height
+                ConstantIntProvider.create(12), // Clear Height
+
+                ConstantFloatProvider.create(5), // Ring count / Size
+                ConstantFloatProvider.create(2), // Ring Height
+                ConstantFloatProvider.create(0.5f), // Thickness
+
+                ConstantFloatProvider.create(0.25f), // Offset Noise
+                ConstantFloatProvider.create(1) //  Texture noise
         ));
     }
 

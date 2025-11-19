@@ -1,33 +1,14 @@
 {
   "type": "forgemaster:crater",
   "config": {
-    "filling_provider": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "data": {
-            "Name": "minecraft:netherrack"
-          },
-          "weight": 8
-        },
-        {
-          "data": {
-            "Name": "minecraft:blackstone"
-          },
-          "weight": 4
-        },
-        {
-          "data": {
-            "Name": "minecraft:magma_block"
-          },
-          "weight": 3
-        }
-      ]
-    },
-    "noise_multiplier": 4.0,
-    "radius_to_ring_center": 5,
-    "replaceable": "#minecraft:moss_replaceable",
-    "ring_height": 20,
-    "ring_width": 18
+    "block_clear_rage": 12,
+    "cant_replaceable": "#minecraft:geode_invalid_blocks",
+    "height": 6,
+    "offset_noise_multiplier": 0.25,
+    "ring_height": 2.0,
+    "ring_size": 5.0,
+    "texture_noise_multiplier": 1.0,
+    "thickness": 0.5,
+    "width": 20
   }
 }
