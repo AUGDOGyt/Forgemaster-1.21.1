@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ModBlocks {
 
-    public static final Block ATTACCA_SHARD = registerBlock("attacca_shard",
+    public static final Block ATTACCA_SHARD = registerBlockWithItem("attacca_shard",
             new AttaccaShardBlock(AbstractBlock.Settings.create()
                     .strength(0.5f)
                     .sounds(BlockSoundGroup.NETHERITE)
@@ -28,21 +28,20 @@ public class ModBlocks {
     public static final Block GREEK_FIRE = registerBlock("greek_fire", new GreekFireBlock(AbstractBlock.Settings.copy(Blocks.FIRE)));
 
     private static Block registerBlock(String name, Block block) {
-        registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Forgemaster.id(name), block);
     }
 
-    private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, Forgemaster.id(name), new BlockItem(block, new Item.Settings()));
+    private static Block registerBlockWithItem(String name, Block block) {
+        return registerBlockWithItem(name, block, new Item.Settings());
     }
 
-    private static Block registerBlock(String name, Block block, Item.Settings settings) {
+    private static Block registerBlockWithItem(String name, Block block, Item.Settings settings) {
         registerBlockItem(name, block, settings);
-        return Registry.register(Registries.BLOCK, Forgemaster.id(name), block);
+        return registerBlock(name, block);
     }
 
-    private static void registerBlockItem(String name, Block block, Item.Settings settings) {
-        Registry.register(Registries.ITEM, Forgemaster.id(name), new BlockItem(block, settings));
+    private static Item registerBlockItem(String name, Block block, Item.Settings settings) {
+        return Registry.register(Registries.ITEM, Forgemaster.id(name), new BlockItem(block, settings));
     }
 
     public static void register() {

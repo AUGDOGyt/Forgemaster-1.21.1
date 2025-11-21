@@ -1,10 +1,13 @@
 package aug.forgemaster.mixin;
 
 import aug.forgemaster.block.ModBlocks;
+import aug.forgemaster.damage_type.ModDamageTypes;
 import aug.forgemaster.item.AttaccaItem;
 import aug.forgemaster.item.ModItemComponentTypes;
 import aug.forgemaster.item.ModItems;
 import aug.forgemaster.particle.ModParticles;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import net.minecraft.block.BlockState;
@@ -12,6 +15,8 @@ import net.minecraft.block.SideShapeType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -101,5 +106,16 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     )
     private ParticleEffect spawnSweepAttackParticles(ParticleEffect particle) {
         return getWeaponStack().isOf(ModItems.ATTACCA) ? ModParticles.FIRE_SWEEP : particle;
+    }
+
+    @WrapOperation(
+            method = "attack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/damage/DamageSources;playerAttack(Lnet/minecraft/entity/player/PlayerEntity;)Lnet/minecraft/entity/damage/DamageSource;"
+            )
+    )
+    private DamageSource getDamageSource(DamageSources instance, PlayerEntity attacker, Operation<DamageSource> original, @Local ItemStack stack) {
+        return stack.isOf(ModItems.ATTACCA) ? instance.create(ModDamageTypes.ATTACCA, attacker) : original.call(instance, attacker);
     }
 }
