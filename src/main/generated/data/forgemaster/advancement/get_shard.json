@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "get_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "forgemaster:attacca_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/gui/advancements/backgrounds/nether.png",
+    "description": {
+      "translate": "advancements.forgemaster.get_shard.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "forgemaster:attacca_shard"
+    },
+    "title": {
+      "translate": "advancements.forgemaster.get_shard.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_shard"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "forgemaster:get_shard",
+  "criteria": {
+    "get_broken_blade": {
+      "conditions": {
+        "items": [
+          {
+            "items": "forgemaster:broken_attacca"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.forgemaster.get_broken_blade.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "forgemaster:broken_attacca"
+    },
+    "title": {
+      "translate": "advancements.forgemaster.get_broken_blade.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_broken_blade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -12,5 +12,11 @@
     "enchantment.forgemaster.comodo_con_fuoco.desc": "Grants you the coolant effect when you attack, preventing you from being set on fire",
     "itemGroup.forgemaster.forgemaster": "Forgemaster",
     "effect.forgemaster.coolant": "Coolant",
-    "effect.forgemaster.sparked": "Sparked"
+    "effect.forgemaster.sparked": "Sparked",
+  "advancements.forgemaster.get_shard.title": "Shard of Flames",
+  "advancements.forgemaster.get_shard.description": "Find a Shard of Attacca in a meteorite",
+  "advancements.forgemaster.get_broken_blade.title": "Shattered Ferocity",
+  "advancements.forgemaster.get_broken_blade.description": "Reforge half of the shattered blade, Attacca",
+  "advancements.forgemaster.get_attacca.title": "Champion of The Forge",
+  "advancements.forgemaster.get_attacca.description": "Complete the shattered sword, Attacca"
 }

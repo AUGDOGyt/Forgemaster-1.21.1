@@ -1,0 +1,35 @@
+{
+  "parent": "forgemaster:get_broken",
+  "criteria": {
+    "get_attacca": {
+      "conditions": {
+        "items": [
+          {
+            "items": "forgemaster:attacca"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.forgemaster.get_attacca.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "forgemaster:attacca"
+    },
+    "title": {
+      "translate": "advancements.forgemaster.get_attacca.title"
+    }
+  },
+  "requirements": [
+    [
+      "get_attacca"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
