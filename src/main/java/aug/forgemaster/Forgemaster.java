@@ -9,6 +9,7 @@ import aug.forgemaster.item.ModItemGroups;
 import aug.forgemaster.item.ModItems;
 import aug.forgemaster.particle.ModParticles;
 import aug.forgemaster.util.ModTags;
+import aug.forgemaster.world.gen.ModFeatures;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
@@ -42,6 +43,7 @@ public class Forgemaster implements ModInitializer {
 		ModItemComponentTypes.register();
 		ModEntities.register();
 		ModParticles.register();
+        ModFeatures.register();
 
 		LootTableEvents.MODIFY.register((key, builder, source, registries) -> {
 			if (key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {

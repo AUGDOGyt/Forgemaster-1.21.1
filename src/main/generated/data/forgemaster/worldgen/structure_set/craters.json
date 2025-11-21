@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 328438,
+    "separation": 35,
+    "spacing": 50
+  },
+  "structures": [
+    {
+      "structure": "forgemaster:crater",
+      "weight": 1
+    }
+  ]
+}

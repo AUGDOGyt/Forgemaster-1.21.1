@@ -6,7 +6,8 @@
     "AbstractFireBlockMixin",
     "EntityMixin",
     "LivingEntityMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "ChunkRegionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

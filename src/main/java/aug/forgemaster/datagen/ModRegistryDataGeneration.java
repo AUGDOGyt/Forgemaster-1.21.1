@@ -16,10 +16,15 @@ public class ModRegistryDataGeneration extends FabricDynamicRegistryProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
         entries.addAll(registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.CONFIGURED_FEATURE));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.PLACED_FEATURE));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.STRUCTURE));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.STRUCTURE_SET));
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.TEMPLATE_POOL));
     }
 
     @Override
     public String getName() {
-        return "";
+        return "DynReg";
     }
 }
