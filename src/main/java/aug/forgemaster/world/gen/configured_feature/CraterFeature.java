@@ -94,7 +94,7 @@ public class CraterFeature extends Feature<CraterFeatureConfig> {
         }
 
         var anchor = origin.up(1);
-        while (true) {
+        while (!world.isOutOfHeightLimit(anchor)) {
             if (!world.getBlockState(anchor.down()).isReplaceable()) {
                 var shard = ModBlocks.ATTACCA_SHARD.getDefaultState()
                         .with(HorizontalFacingBlock.FACING, Direction.Type.HORIZONTAL.random(random));
