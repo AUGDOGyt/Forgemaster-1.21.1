@@ -45,11 +45,11 @@ public class Forgemaster implements ModInitializer {
 		ModParticles.register();
         ModFeatures.register();
 
-		LootTableEvents.MODIFY.register((key, builder, source, registries) -> {
-			if (key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
-				builder.modifyPools(pool -> pool.with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(5)));
-			}
-		});
+//		LootTableEvents.MODIFY.register((key, builder, source, registries) -> {
+//			if (key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
+//				builder.modifyPools(pool -> pool.with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(5)));
+//			}
+//		});
         EnchantmentEvents.ALLOW_ENCHANTING.register((enchantment, target, context) -> {
             if (target.isOf(ModItems.ATTACCA) && enchantment.isIn(ModTags.Enchantments.TEMPERATURE_BASED)) {
                 return TriState.FALSE;
