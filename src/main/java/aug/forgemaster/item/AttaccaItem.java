@@ -44,7 +44,7 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         if (world.isClient) {
-            Vec3d origin = user.getEyePos().add(user.getRotationVector()).add(0, 0.25f, 0);
+            Vec3d origin = user.getEyePos().add(user.getRotationVector());
             Vec3d pos = origin.addRandom(user.getRandom(), 1.5f);
             world.addParticle(
                     new GreekFireParticleEffect(getChargeColor(1 - MathHelper.clamp((72000f - remainingUseTicks) / 3 / MAX_FIREBALL_CHARGE, 0, 1))),
@@ -118,7 +118,7 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
                 if (world.isClient) {
                     world.playSoundFromEntity(user, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.PLAYERS, 1, 1);
                 } else {
-                    Vec3d pos = user.getEyePos().add(user.getRotationVector()).add(0, 0.25f, 0);
+                    Vec3d pos = user.getEyePos().add(user.getRotationVector());
                     GreekFireballEntity fireball = new GreekFireballEntity(pos.x, pos.y, pos.z, user.getRotationVector(), world);
                     fireball.strength = strength * usedCharge;
                     world.spawnEntity(fireball);
