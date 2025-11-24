@@ -15,6 +15,10 @@ repositories {
         name = 'BlameJared Maven'
         url = 'https://maven.blamejared.com'
     }
+    maven {
+        name = "FzzyMaven"
+        url = "https://maven.fzzyhmstrs.me/"
+    }
 }
 
 fabricApi {
@@ -40,6 +44,8 @@ dependencies {
         exclude group: "maven.modrinth"
         exclude group: "me.fallenbreath"
     }
+
+    modImplementation "me.fzzyhmstrs:fzzy_config:${project.fzzy_config_version}"
 }
 
 processResources {

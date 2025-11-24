@@ -1,4 +1,9 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "forgemaster:crater"
+    }
+  ],
   "placement": {
     "type": "minecraft:random_spread",
     "salt": 328438,
