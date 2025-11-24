@@ -1,5 +1,6 @@
 package aug.forgemaster.mixin;
 
+import aug.forgemaster.Forgemaster;
 import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.damage_type.ModDamageTypes;
 import aug.forgemaster.item.AttaccaItem;
@@ -11,7 +12,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SideShapeType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,7 +22,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -73,9 +72,10 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             for (int i = 2; i < 10; i++) {
                 BlockPos pos = BlockPos.ofFloored(origin.add(dir.multiply(i)));
                 BlockState state = getWorld().getBlockState(pos);
+                System.out.println(pos + " " + state);
 
-                if (state.isSideSolid(getWorld(), pos, Direction.UP, SideShapeType.FULL) && state.isSolidBlock(getWorld(), pos)) {
-                    while ((state = getWorld().getBlockState(pos)).isSolidBlock(getWorld(), pos) && state.isSideSolid(getWorld(), pos, Direction.UP, SideShapeType.FULL)) {
+                if (Forgemaster.canPlaceFireAt(state, getWorld(), pos)) {
+                    while (!Forgemaster.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
                         pos = pos.up();
 
                         if (!pos.isWithinDistance(origin, 10)) {
@@ -83,7 +83,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                         }
                     }
                 } else {
-                    while (!(state = getWorld().getBlockState(pos.down())).isSolidBlock(getWorld(), pos.down()) && !state.isSideSolid(getWorld(), pos, Direction.UP, SideShapeType.FULL)) {
+                    while (!Forgemaster.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
                         pos = pos.down();
 
                         if (!pos.isWithinDistance(origin, 10)) {

@@ -1,12 +1,12 @@
 package aug.forgemaster.entity;
 
+import aug.forgemaster.Forgemaster;
 import aug.forgemaster.block.GreekFireBlock;
 import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.damage_type.ModDamageTypes;
 import aug.forgemaster.item.AttaccaItem;
 import aug.forgemaster.particle.GreekFireParticleEffect;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SideShapeType;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -20,7 +20,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -70,8 +69,8 @@ public class GreekFireballEntity extends ExplosiveProjectileEntity {
                     BlockPos pos = getBlockPos().add(x, 0, z);
                     BlockState state = getWorld().getBlockState(pos);
 
-                    if (state.isSideSolid(getWorld(), pos, Direction.UP, SideShapeType.FULL) && state.isSolidBlock(getWorld(), pos)) {
-                        while ((state = getWorld().getBlockState(pos)).isSolidBlock(getWorld(), pos) && state.isSideSolid(getWorld(), pos, Direction.UP, SideShapeType.FULL)) {
+                    if (Forgemaster.canPlaceFireAt(state, getWorld(), pos)) {
+                        while (!Forgemaster.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
                             pos = pos.up();
 
                             if (!pos.isWithinDistance(getPos(), radius)) {
@@ -79,7 +78,7 @@ public class GreekFireballEntity extends ExplosiveProjectileEntity {
                             }
                         }
                     } else {
-                        while (!(state = getWorld().getBlockState(pos.down())).isSolidBlock(getWorld(), pos.down()) && !state.isSideSolid(getWorld(), pos, Direction.UP, SideShapeType.FULL)) {
+                        while (!Forgemaster.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
                             pos = pos.down();
 
                             if (!pos.isWithinDistance(getPos(), radius)) {
