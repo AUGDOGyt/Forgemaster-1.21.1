@@ -25,5 +25,8 @@ public class ModEnchantmentTagProvider extends FabricTagProvider<Enchantment> {
         getOrCreateTagBuilder(ModTags.Enchantments.TEMPERATURE_BASED)
                 .add(Enchantments.FIRE_ASPECT)
                 .addOptional(Identifier.of("enchancement", "frozen"));
+
+        getOrCreateTagBuilder(EnchantmentTags.SMELTS_LOOT)
+                .add(ModEnchantments.AFFANNATO, ModEnchantments.COMODO_CON_FUOCO);
     }
 }
