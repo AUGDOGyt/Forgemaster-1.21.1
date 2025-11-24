@@ -16,12 +16,7 @@ import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
 import net.fabricmc.fabric.api.util.TriState;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SideShapeType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,14 +28,6 @@ public class Forgemaster implements ModInitializer {
 
     public static Identifier id(String path) {
         return Identifier.of(MOD_ID, path);
-    }
-
-    public static boolean canPlaceFireAt(BlockState state, World world, BlockPos pos) {
-        if (world.isOutOfHeightLimit(pos)) {
-            return true;
-        }
-
-        return (!state.isSolidBlock(world, pos) && (state.getHardness(world, pos) == 0 || state.isReplaceable())) && world.getBlockState(pos.down()).isSideSolid(world, pos.down(), Direction.UP, SideShapeType.FULL);
     }
 
     @Override

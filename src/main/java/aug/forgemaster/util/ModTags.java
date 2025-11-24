@@ -19,6 +19,7 @@ public class ModTags {
     }
     public static class Blocks {
         public static final TagKey<Block> SHARD_BASE = of("shard_base");
+        public static final TagKey<Block> FIRE_REPLACEABLE = of("fire_replaceable");
 
         private static TagKey<Block> of(String name) {
             return TagKey.of(RegistryKeys.BLOCK, id(name));

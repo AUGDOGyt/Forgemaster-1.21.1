@@ -21,5 +21,14 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(ModTags.Blocks.SHARD_BASE)
                 .addOptionalTag(BlockTags.ANVIL)
                 .add(Blocks.MAGMA_BLOCK);
+
+        getOrCreateTagBuilder(ModTags.Blocks.FIRE_REPLACEABLE)
+                .addOptionalTag(BlockTags.REPLACEABLE)
+                .addOptionalTag(BlockTags.FLOWERS)
+                .addOptionalTag(BlockTags.SAPLINGS)
+                .add(
+                        Blocks.TORCH, Blocks.WALL_TORCH,
+                        Blocks.SOUL_TORCH, Blocks.SOUL_WALL_TORCH
+                );
     }
 }

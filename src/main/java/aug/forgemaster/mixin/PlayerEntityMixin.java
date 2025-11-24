@@ -1,12 +1,12 @@
 package aug.forgemaster.mixin;
 
-import aug.forgemaster.Forgemaster;
 import aug.forgemaster.block.ModBlocks;
 import aug.forgemaster.damage_type.ModDamageTypes;
 import aug.forgemaster.item.AttaccaItem;
 import aug.forgemaster.item.ModItemComponentTypes;
 import aug.forgemaster.item.ModItems;
 import aug.forgemaster.particle.ModParticles;
+import aug.forgemaster.util.Helpers;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
@@ -74,8 +74,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 BlockState state = getWorld().getBlockState(pos);
                 System.out.println(pos + " " + state);
 
-                if (Forgemaster.canPlaceFireAt(state, getWorld(), pos)) {
-                    while (!Forgemaster.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
+                if (Helpers.canPlaceFireAt(state, getWorld(), pos)) {
+                    while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
                         pos = pos.up();
 
                         if (!pos.isWithinDistance(origin, 10)) {
@@ -83,7 +83,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                         }
                     }
                 } else {
-                    while (!Forgemaster.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
+                    while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
                         pos = pos.down();
 
                         if (!pos.isWithinDistance(origin, 10)) {
