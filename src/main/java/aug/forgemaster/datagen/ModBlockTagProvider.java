@@ -1,8 +1,10 @@
 package aug.forgemaster.datagen;
 
 import aug.forgemaster.block.ModBlocks;
+import aug.forgemaster.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 
@@ -16,5 +18,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BlockTags.FIRE).add(ModBlocks.GREEK_FIRE);
+        getOrCreateTagBuilder(ModTags.Blocks.SHARD_BASE)
+                .addOptionalTag(BlockTags.ANVIL)
+                .add(Blocks.MAGMA_BLOCK);
     }
 }

@@ -1,5 +1,6 @@
 package aug.forgemaster.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
@@ -14,6 +15,13 @@ public class ModTags {
 
         private static TagKey<Item> of(String name) {
             return TagKey.of(RegistryKeys.ITEM, id(name));
+        }
+    }
+    public static class Blocks {
+        public static final TagKey<Block> SHARD_BASE = of("shard_base");
+
+        private static TagKey<Block> of(String name) {
+            return TagKey.of(RegistryKeys.BLOCK, id(name));
         }
     }
 

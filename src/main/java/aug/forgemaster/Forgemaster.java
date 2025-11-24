@@ -11,16 +11,8 @@ import aug.forgemaster.particle.ModParticles;
 import aug.forgemaster.util.ModTags;
 import aug.forgemaster.world.gen.ModFeatures;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.fabricmc.fabric.api.item.v1.EnchantmentEvents;
-import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.util.TriState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootTables;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,16 +37,10 @@ public class Forgemaster implements ModInitializer {
 		ModParticles.register();
         ModFeatures.register();
 
-//		LootTableEvents.MODIFY.register((key, builder, source, registries) -> {
-//			if (key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
-//				builder.modifyPools(pool -> pool.with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE).weight(5)));
-//			}
-//		});
         EnchantmentEvents.ALLOW_ENCHANTING.register((enchantment, target, context) -> {
             if (target.isOf(ModItems.ATTACCA) && enchantment.isIn(ModTags.Enchantments.TEMPERATURE_BASED)) {
                 return TriState.FALSE;
             }
-
             return TriState.DEFAULT;
         });
 	}
