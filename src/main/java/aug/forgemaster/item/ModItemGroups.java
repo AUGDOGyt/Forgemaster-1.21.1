@@ -22,6 +22,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ATTACCA_SHARD);
                         entries.add(ModItems.BROKEN_ATTACCA);
                         entries.add(ModItems.ATTACCA);
+                        entries.add(ModBlocks.PEDESTAL);
                     }).build()
     );
 

@@ -27,6 +27,9 @@ public class ModBlocks {
             ), new Item.Settings().fireproof().component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("block.forgemaster.attacca_shard.desc")))));
     public static final Block GREEK_FIRE = registerBlock("greek_fire", new GreekFireBlock(AbstractBlock.Settings.copy(Blocks.FIRE)));
 
+    public static final Block PEDESTAL = registerBlock("pedestal",
+            new PedestalBlock(AbstractBlock.Settings.create().nonOpaque()));
+
     private static Block registerBlock(String name, Block block) {
         return Registry.register(Registries.BLOCK, Forgemaster.id(name), block);
     }

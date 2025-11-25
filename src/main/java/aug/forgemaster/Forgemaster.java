@@ -1,6 +1,7 @@
 package aug.forgemaster;
 
 import aug.forgemaster.block.ModBlocks;
+import aug.forgemaster.block.entity.ModBlockEntities;
 import aug.forgemaster.config.ForgemasterConfig;
 import aug.forgemaster.config.conditions.CraterResourceCondition;
 import aug.forgemaster.effect.ModEffects;
@@ -34,6 +35,7 @@ public class Forgemaster implements ModInitializer {
     public void onInitialize() {
         ModItems.register();
         ModBlocks.register();
+        ModBlockEntities.registerBlockEntities();
         ModItemGroups.register();
         ModEffects.register();
         ModEnchantmentEffects.register();
