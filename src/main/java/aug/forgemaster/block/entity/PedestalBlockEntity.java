@@ -17,7 +17,7 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     public PedestalBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.PEDESTAL_BE, pos, state);
+        super(ModBlockEntities.PEDESTAL, pos, state);
     }
 
     @Override
