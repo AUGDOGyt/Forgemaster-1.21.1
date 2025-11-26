@@ -10,6 +10,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -45,5 +46,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('S', Items.STICK)
                 .criterion("has_diamond", FabricRecipeProvider.conditionsFromItem(Items.DIAMOND))
                 .offerTo(recipeExporter, Forgemaster.id("hammer"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.DECORATIONS, ModBlocks.GOLD_CHANDELIER, 1)
+                .pattern(" H ")
+                .pattern("CIC")
+                .input('H', Items.CHAIN)
+                .input('C', ItemTags.CANDLES)
+                .input('I', Items.GOLD_INGOT)
+                .criterion("has_candle", FabricRecipeProvider.conditionsFromTag(ItemTags.CANDLES))
+                .offerTo(recipeExporter, Forgemaster.id("gold_chandelier"));
     }
 }
