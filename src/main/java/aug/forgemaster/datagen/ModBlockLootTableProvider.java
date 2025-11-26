@@ -16,5 +16,6 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
     public void generate() {
         addDrop(ModBlocks.ATTACCA_SHARD);
         addDrop(ModBlocks.PEDESTAL);
+        addDrop(ModBlocks.GOLD_CHANDELIER);
     }
 }

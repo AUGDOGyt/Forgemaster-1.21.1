@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "minecraft:candles"
+    },
+    "H": {
+      "item": "minecraft:chain"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    " H ",
+    "CIC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "forgemaster:gold_chandelier"
+  }
+}

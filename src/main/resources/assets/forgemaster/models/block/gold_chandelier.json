@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "forgemaster:block/gold_chandelier",
+    "all": "forgemaster:block/gold_chandelier"
+  },
+  "elements": [
+    {
+      "from": [ 0.5, 0, 8 ],
+      "to": [ 15.5, 16, 8 ],
+      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45},
+      "shade": false,
+      "faces": {
+        "north": { "uv": [ 0, 0, 15, 16 ], "texture": "#all" },
+        "south": { "uv": [ 0, 0, 15, 16 ], "texture": "#all" }
+      }
+    },
+    {
+      "from": [ 8, 0, 0.5 ],
+      "to": [ 8, 16, 15.5 ],
+      "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45},
+      "shade": false,
+      "faces": {
+        "west": { "uv": [ 0, 0, 15, 16 ], "texture": "#all" },
+        "east": { "uv": [ 0, 0, 15, 16 ], "texture": "#all" }
+      }
+    }
+  ]
+}

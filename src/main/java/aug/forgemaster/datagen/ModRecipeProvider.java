@@ -45,14 +45,5 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('S', Items.STICK)
                 .criterion("has_diamond", FabricRecipeProvider.conditionsFromItem(Items.DIAMOND))
                 .offerTo(recipeExporter, Forgemaster.id("hammer"));
-
-        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.GILDED_BLACKSTONE, 1)
-                .pattern("GGG")
-                .pattern("GBG")
-                .pattern("GGG")
-                .input('G', Items.GOLD_NUGGET)
-                .input('B', Items.BLACKSTONE)
-                .criterion("has_gilded_blackstone", FabricRecipeProvider.conditionsFromItem(Items.BLACKSTONE))
-                .offerTo(recipeExporter, Forgemaster.id("gilded_blackstone"));
     }
 }

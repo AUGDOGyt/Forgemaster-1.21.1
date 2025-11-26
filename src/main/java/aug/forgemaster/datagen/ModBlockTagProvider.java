@@ -18,6 +18,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(BlockTags.FIRE).add(ModBlocks.GREEK_FIRE);
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(ModBlocks.PEDESTAL, ModBlocks.GOLD_CHANDELIER);
         getOrCreateTagBuilder(ModTags.Blocks.SHARD_BASE)
                 .addOptionalTag(BlockTags.ANVIL)
                 .add(Blocks.MAGMA_BLOCK);

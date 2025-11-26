@@ -132,5 +132,6 @@ public class ForgemasterClient implements ClientModInitializer {
                 }
             }
         });
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.GOLD_CHANDELIER, RenderLayer.getCutout());
     }
 }

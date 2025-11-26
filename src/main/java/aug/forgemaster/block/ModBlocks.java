@@ -4,6 +4,7 @@ import aug.forgemaster.Forgemaster;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.BlockItem;
@@ -29,6 +30,8 @@ public class ModBlocks {
 
     public static final Block PEDESTAL = registerBlockWithItem("pedestal",
             new PedestalBlock(AbstractBlock.Settings.create().nonOpaque()));
+    public static final Block GOLD_CHANDELIER = registerBlockWithItem("gold_chandelier",
+            new ChandelierBlock(AbstractBlock.Settings.copy(Blocks.CHAIN).pistonBehavior(PistonBehavior.DESTROY).luminance(state -> 15)));
 
     private static Block registerBlock(String name, Block block) {
         return Registry.register(Registries.BLOCK, Forgemaster.id(name), block);

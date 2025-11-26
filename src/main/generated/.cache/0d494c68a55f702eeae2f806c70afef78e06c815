@@ -1,4 +1,5 @@
-// 1.21.1	2025-11-25T19:32:08.4601204	Forgemaster/Tags for minecraft:block
+// 1.21.1	2025-11-25T21:53:34.2753989	Forgemaster/Tags for minecraft:block
 9291ad6fb49b06d717b0a750045be7af32208023 data\forgemaster\tags\block\fire_replaceable.json
-5b3ba06ecebb71366402be4955e7f16102c5588b data\minecraft\tags\block\fire.json
 adc19fbb1661e70a1663652344f7b45f10d3a858 data\forgemaster\tags\block\shard_base.json
+5b3ba06ecebb71366402be4955e7f16102c5588b data\minecraft\tags\block\fire.json
+4ba22042ac66d641bb20af010a2527a09787b0b4 data\minecraft\tags\block\mineable\pickaxe.json
