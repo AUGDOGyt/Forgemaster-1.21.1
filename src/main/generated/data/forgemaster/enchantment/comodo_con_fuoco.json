@@ -12,14 +12,14 @@
           "max_amplifier": 0.0,
           "max_duration": {
             "type": "minecraft:linear",
-            "base": 10.0,
-            "per_level_above_first": 10.0
+            "base": 2.0,
+            "per_level_above_first": 2.0
           },
           "min_amplifier": 0.0,
           "min_duration": {
             "type": "minecraft:linear",
-            "base": 10.0,
-            "per_level_above_first": 10.0
+            "base": 2.0,
+            "per_level_above_first": 2.0
           },
           "to_apply": "forgemaster:coolant"
         },

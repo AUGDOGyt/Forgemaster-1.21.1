@@ -11,7 +11,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalFloatRef;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -67,32 +66,18 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             Vec3d origin = getEyePos();
             Vec3d dir = target.getEyePos().subtract(origin).normalize();
             dir = new Vec3d(dir.x, 0, dir.z);
+            origin = origin.subtract(0, 10, 0);
 
-            blocks:
             for (int i = 2; i < 10; i++) {
                 BlockPos pos = BlockPos.ofFloored(origin.add(dir.multiply(i)));
-                BlockState state = getWorld().getBlockState(pos);
-                System.out.println(pos + " " + state);
 
-                if (Helpers.canPlaceFireAt(state, getWorld(), pos)) {
-                    while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
-                        pos = pos.up();
-
-                        if (!pos.isWithinDistance(origin, 10)) {
-                            break blocks;
-                        }
-                    }
-                } else {
-                    while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
-                        pos = pos.down();
-
-                        if (!pos.isWithinDistance(origin, 10)) {
-                            break blocks;
-                        }
-                    }
+                while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
+                    pos = pos.up();
                 }
 
-                getWorld().setBlockState(pos, ModBlocks.GREEK_FIRE.getDefaultState());
+                if (pos.isWithinDistance(origin, 10)) {
+                    getWorld().setBlockState(pos, ModBlocks.GREEK_FIRE.getDefaultState());
+                }
             }
         }
     }

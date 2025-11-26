@@ -60,35 +60,18 @@ public class GreekFireballEntity extends ExplosiveProjectileEntity {
                     SoundEvents.ENTITY_GENERIC_EXPLODE
             );
 
-            float radius = strength / 4 + 2;
+            float radius = strength / 4 + 1;
             int maxRadius = (int) Math.ceil(radius);
 
             for (int x = -maxRadius; x <= maxRadius; x++) {
-                blocks:
-                for (int z = -maxRadius; z <= maxRadius; z++) {
-                    BlockPos pos = getBlockPos().add(x, 0, z);
-                    BlockState state = getWorld().getBlockState(pos);
+                for (int y = -maxRadius; y <= maxRadius; y++) {
+                    for (int z = -maxRadius; z <= maxRadius; z++) {
+                        BlockPos pos = getBlockPos().add(x, y, z);
+                        BlockState state = getWorld().getBlockState(pos);
 
-                    if (!Helpers.canPlaceFireAt(state, getWorld(), pos)) {
-                        while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
-                            pos = pos.up();
-
-                            if (!pos.isWithinDistance(getPos(), radius)) {
-                                continue blocks;
-                            }
+                        if (pos.isWithinDistance(getPos(), radius) && Helpers.canPlaceFireAt(state, getWorld(), pos)) {
+                            getWorld().setBlockState(pos, ModBlocks.GREEK_FIRE.getDefaultState().with(GreekFireBlock.AGE, MathHelper.clamp((int) (strength / 2 + random.nextFloat() * 4 + 2), 0, 15)));
                         }
-                    } else {
-                        while (!Helpers.canPlaceFireAt(getWorld().getBlockState(pos), getWorld(), pos)) {
-                            pos = pos.down();
-
-                            if (!pos.isWithinDistance(getPos(), radius)) {
-                                continue blocks;
-                            }
-                        }
-                    }
-
-                    if (pos.isWithinDistance(getPos(), radius)) {
-                        getWorld().setBlockState(pos, ModBlocks.GREEK_FIRE.getDefaultState().with(GreekFireBlock.AGE, MathHelper.clamp((int) (strength / 2 + random.nextFloat() * 4 + 2), 0, 15)));
                     }
                 }
             }

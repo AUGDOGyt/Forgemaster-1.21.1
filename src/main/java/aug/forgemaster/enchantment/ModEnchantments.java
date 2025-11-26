@@ -52,8 +52,8 @@ public class ModEnchantments {
                         EnchantmentEffectTarget.ATTACKER, EnchantmentEffectTarget.ATTACKER,
                         new ApplyMobEffectEnchantmentEffect(
                                 RegistryEntryList.of(ModEffects.COOLANT),
-                                EnchantmentLevelBasedValue.linear(10, 10),
-                                EnchantmentLevelBasedValue.linear(10, 10),
+                                EnchantmentLevelBasedValue.linear(2, 2),
+                                EnchantmentLevelBasedValue.linear(2, 2),
                                 EnchantmentLevelBasedValue.constant(0),
                                 EnchantmentLevelBasedValue.constant(0)
                         )));
