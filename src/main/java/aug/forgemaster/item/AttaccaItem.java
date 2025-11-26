@@ -73,7 +73,7 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
             stack.set(ModItemComponentTypes.ATTACCA_CHARGE, 0);
         }
 
-        target.setOnFireFor(5);
+        target.setOnFireFor(10);
 
         return true;
     }

@@ -18,6 +18,8 @@ public class ModItems {
 
     public static final Item ATTACCA = registerItem("attacca", new AttaccaItem(ToolMaterials.NETHERITE, new Item.Settings().fireproof().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 4, -2.8f)).component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("item.forgemaster.attacca.desc"))))));
 
+    public static final Item HAMMER = registerItem("hammer", new HammerItem(ToolMaterials.DIAMOND, new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.DIAMOND, 2, -1.5f))));
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Forgemaster.id(name), item);
     }

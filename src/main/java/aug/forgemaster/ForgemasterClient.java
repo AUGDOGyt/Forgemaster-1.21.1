@@ -1,6 +1,8 @@
 package aug.forgemaster;
 
 import aug.forgemaster.block.ModBlocks;
+import aug.forgemaster.block.entity.ModBlockEntities;
+import aug.forgemaster.block.entity.PedestalBlockEntityRenderer;
 import aug.forgemaster.entity.GreekFireballEntityRenderer;
 import aug.forgemaster.entity.ModEntities;
 import aug.forgemaster.item.AttaccaItem;
@@ -16,6 +18,7 @@ import net.minecraft.client.particle.SweepAttackParticle;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -109,6 +112,7 @@ public class ForgemasterClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.GREEK_FIREBALL, GreekFireballEntityRenderer::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.GREEK_FIRE, GreekFireParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.FIRE_SWEEP, SweepAttackParticle.Factory::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
         WorldRenderEvents.AFTER_ENTITIES.register(context -> {
             for (Entity entity : context.world().getEntities()) {
                 if (entity instanceof PlayerEntity player && player.getActiveItem().isOf(ModItems.ATTACCA)) {

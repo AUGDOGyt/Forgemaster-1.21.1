@@ -36,5 +36,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('S', Items.STICK)
                 .criterion("has_broken_attacca", FabricRecipeProvider.conditionsFromItem(ModItems.BROKEN_ATTACCA))
                 .offerTo(recipeExporter, Forgemaster.id("attacca"));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.HAMMER, 1)
+                .pattern("DDD")
+                .pattern("DSD")
+                .pattern(" S ")
+                .input('D', Items.DIAMOND)
+                .input('S', Items.STICK)
+                .criterion("has_diamond", FabricRecipeProvider.conditionsFromItem(Items.DIAMOND))
+                .offerTo(recipeExporter, Forgemaster.id("hammer"));
     }
 }
