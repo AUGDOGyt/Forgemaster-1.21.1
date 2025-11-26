@@ -1,7 +1,7 @@
-// 1.21.1	2025-11-25T19:32:08.461128	Forgemaster/Recipes
-833e5908a852677639d5874a16db10c54c45259c data\forgemaster\recipe\hammer.json
-8fee6363a35a91fe30cef735b070f6cdc06c120d data\forgemaster\advancement\recipes\tools\broken_attacca.json
-bbb737cfe101da7b98b387b04978700ee74053cb data\forgemaster\recipe\broken_attacca.json
-5494616f0427a4a3bd69f87832dc778d6e6dda0e data\forgemaster\advancement\recipes\combat\attacca.json
-ae2d1188d148b5d1ff9ce7432b6aed2d6177f56c data\forgemaster\recipe\attacca.json
+// 1.21.1	2025-11-25T21:38:32.3559533	Forgemaster/Recipes
 70e53b9bdffbc8d7bd25600ce585f2348c2f3d50 data\forgemaster\advancement\recipes\combat\hammer.json
+bbb737cfe101da7b98b387b04978700ee74053cb data\forgemaster\recipe\broken_attacca.json
+ae2d1188d148b5d1ff9ce7432b6aed2d6177f56c data\forgemaster\recipe\attacca.json
+5494616f0427a4a3bd69f87832dc778d6e6dda0e data\forgemaster\advancement\recipes\combat\attacca.json
+8fee6363a35a91fe30cef735b070f6cdc06c120d data\forgemaster\advancement\recipes\tools\broken_attacca.json
+833e5908a852677639d5874a16db10c54c45259c data\forgemaster\recipe\hammer.json

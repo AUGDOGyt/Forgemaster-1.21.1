@@ -23,6 +23,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BROKEN_ATTACCA);
                         entries.add(ModItems.ATTACCA);
                         entries.add(ModBlocks.PEDESTAL);
+                        entries.add(ModBlocks.GOLD_CHANDELIER);
                         entries.add(ModItems.HAMMER);
                     }).build()
     );

@@ -43,5 +43,6 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator gen) {
         gen.register(ModBlocks.ATTACCA_SHARD.asItem(), Models.GENERATED);
         gen.register(ModItems.BROKEN_ATTACCA, Models.GENERATED);
+        gen.register(ModBlocks.GOLD_CHANDELIER.asItem(), Models.GENERATED);
     }
 }
