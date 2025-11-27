@@ -43,7 +43,7 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
 
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        if (world.isClient) {
+        if (world.isClient && user.isInSneakingPose()) {
             Vec3d origin = user.getEyePos().add(user.getRotationVector());
             Vec3d pos = origin.addRandom(user.getRandom(), 1.5f);
             world.addParticle(
