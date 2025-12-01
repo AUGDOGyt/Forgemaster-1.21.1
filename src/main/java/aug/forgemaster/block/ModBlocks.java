@@ -26,6 +26,11 @@ public class ModBlocks {
                     .emissiveLighting(Blocks::always)
             ), new Item.Settings().fireproof().component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("block.forgemaster.attacca_shard.desc")))));
     public static final Block GREEK_FIRE = registerBlock("greek_fire", new GreekFireBlock(AbstractBlock.Settings.copy(Blocks.FIRE)));
+    public static final Block CHARM_TABLE = registerBlockWithItem("charm_table", 
+            new CharmTableBlock(AbstractBlock.Settings.create()
+                    .strength(0.2f)
+                    .sounds(BlockSoundGroup.WOOD)
+            ), new Item.Settings().component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("block.forgemaster.charm_table.desc")))));
 
     private static Block registerBlock(String name, Block block) {
         return Registry.register(Registries.BLOCK, Forgemaster.id(name), block);

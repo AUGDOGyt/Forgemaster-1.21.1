@@ -22,6 +22,9 @@ public class ModItemGroups {
                         entries.add(ModBlocks.ATTACCA_SHARD);
                         entries.add(ModItems.BROKEN_ATTACCA);
                         entries.add(ModItems.ATTACCA);
+                        entries.add(ModBlocks.CHARM_TABLE);
+                        entries.add(ModItems.VULCANITE_NUGGET);
+                        entries.add(ModItems.MIRROR_CHARM);
                     }).build()
     );
 

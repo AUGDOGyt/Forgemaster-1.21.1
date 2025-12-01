@@ -66,9 +66,23 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 )
                 .criterion("get_attacca", InventoryChangedCriterion.Conditions.items(ModItems.ATTACCA))
                 .build(Forgemaster.id("get_attacca"));
+        AdvancementEntry getCharm = Advancement.Builder.create()
+                .display(
+                        ModItems.MIRROR_CHARM,
+                        Text.translatable("advancements.forgemaster.get_charm.title"),
+                        Text.translatable("advancements.forgemaster.get_charm.description"),
+                        Identifier.of("textures/gui/advancements/backgrounds/end.png"),
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        true
+                )
+                .criterion("get_charm", InventoryChangedCriterion.Conditions.items(ModItems.MIRROR_CHARM))
+                .build(Forgemaster.id("get_charm"));
 
         consumer.accept(getShard);
         consumer.accept(getBrokenBlade);
         consumer.accept(getBlade);
+        consumer.accept(getCharm);
     }
 }
