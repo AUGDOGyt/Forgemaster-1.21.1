@@ -15,6 +15,9 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> SPARKED = register("sparked",
             new SparkedEffect(StatusEffectCategory.HARMFUL, 0xF48522));
 
+    public static final RegistryEntry<StatusEffect> MIRROR = register("mirror",
+            new MirrorEffect(StatusEffectCategory.BENEFICIAL, OxA8F7FF));
+
     private static RegistryEntry<StatusEffect> register(String name, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Forgemaster.id(name), statusEffect);
     }

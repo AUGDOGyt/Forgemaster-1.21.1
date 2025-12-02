@@ -28,4 +28,19 @@ public abstract class LivingEntityMixin {
             cir.setReturnValue(0d);
         }
     }
+
+    @Inject(
+            method = "attack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/entity/Entity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"
+            )
+    )
+    private void attack(Entity target, CallbackInfo ci, @Local(ordinal = 0) LocalFloatRef damage,) {
+        if (hasStatusEffect(ModEffects.MIRROR)) {
+                damage.set(damage.get() - 3);
+                owner
+            }
+        }
+    }
 }

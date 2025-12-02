@@ -11,6 +11,8 @@
   "item.forgemaster.wind_charm": "Wind Charm",
   "item.forgemaster.silence_charm": "Silence Charm",
   "item.forgemaster.silence_charm.desc": "While equipped you produce no sound",
+  "item.forgemaster.ward_charm": "Ward Charm",
+  "item.forgemaster.ward_charm.desc": "While equipped you take reduced damage",
   "enchantment.forgemaster.affannato": "Affannato",
   "enchantment.forgemaster.affannato.desc": "Allows you to use charge from your opponent taking fire damage to shoot fireballs, filling the area with greek fire",
   "enchantment.forgemaster.comodo_con_fuoco": "Comodo con Fuoco",
@@ -27,5 +29,7 @@
   "death.attack.forgemaster.attacca": "%1$s felt the gods wrath from %2$s",
   "death.attack.forgemaster.attacca.player": "%1$s was delivered judgement by %2$s",
   "death.attack.forgemaster.greek_fireball": "%1$s couldn't survive the dance floor",
-  "death.attack.forgemaster.greek_fireball.player": "%1$s was unable to make it to the party because of %2$s"
+  "death.attack.forgemaster.greek_fireball.player": "%1$s was unable to make it to the party because of %2$s",
+  "key.forgemaster.activate_charm": "Activate Charm",
+  "category.forgemaster.keybinds": "Forgemaster"
 }

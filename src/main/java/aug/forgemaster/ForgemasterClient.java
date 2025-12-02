@@ -27,6 +27,25 @@ import org.joml.Vector3f;
 import java.util.Objects;
 
 public class ForgemasterClient implements ClientModInitializer {
+    private static KeyBinding activateCharm;
+    private static final activateCharm.Category CATEGORY = KeyBinding.Category.create(Identifier.of("forgemaster", "charm"));
+
+    activateCharm = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+    "key.forgemaster.activate_charm", // The translation key of the keybinding's name
+    InputUtil.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
+    GLFW.GLFW_KEY_R, // The keycode of the key
+    "category.forgemaster.keybinds" // The category of the key - you'll need to add a translation for this!
+    ));
+
+    ClientTickEvents.END_CLIENT_TICK.register(client -> {
+        if (activateCharm.wasPressed()) {
+            client.player.sendMessage(Text.literal("Charm was activated"), false);
+            if (world.isClient) {
+                
+            }
+        }
+    });
+
     public static final int[] CUBE_INDICES = {
             0, 1, 2, 3,
             1, 5, 6, 2,
