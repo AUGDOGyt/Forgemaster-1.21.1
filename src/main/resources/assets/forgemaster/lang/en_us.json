@@ -6,6 +6,10 @@
   "item.forgemaster.broken_attacca.desc": "Half of the legendary sword, the lone gear clicks loudly without its partner",
   "item.forgemaster.attacca": "Attacca",
   "item.forgemaster.attacca.desc": "A legendary sword forged by §k######",
+  "item.forgemaster.vulcanite_nugget": "Vulcanite Nugget",
+  "item.forgemaster.vulcanite_nugget.desc": "A foreign ore that radiates a faint heat",
+  "item.forgemaster.vulcanite_ingot": "Vulcanite Ingot",
+  "item.forgemaster.vulcanite_ingot.desc": "An ingot of a mysterious ore, the strong heat it radiates makes it hard to handle for too long",
   "enchantment.forgemaster.affannato": "Affannato",
   "enchantment.forgemaster.affannato.desc": "Allows you to use charge from your opponent taking fire damage to shoot fireballs, filling the area with greek fire",
   "enchantment.forgemaster.comodo_con_fuoco": "Comodo con Fuoco",
@@ -17,10 +21,15 @@
   "advancements.forgemaster.get_shard.description": "Find a Shard of Attacca in a meteorite",
   "advancements.forgemaster.get_broken_blade.title": "Shattered Ferocity",
   "advancements.forgemaster.get_broken_blade.description": "Reforge half of the shattered blade, Attacca",
-  "advancements.forgemaster.get_attacca.title": "Champion of The Forge",
+  "advancements.forgemaster.get_attacca.title": "§k######'s Champion",
   "advancements.forgemaster.get_attacca.description": "Complete the shattered sword, Attacca",
+  "advancements.forgemaster.get_mirror.title": "Mirror Mirror on the Wall...",
+  "advancements.forgemaster.get_mirror.description": "Acquire a Mirror Charm",
+  "advancements.forgemaster.get_vulcanite_nug.title": "One Step Forward, Two Steps Back",
+  "advancements.forgemaster.get_vulcanite_nug.description": "Obtain a Vulcanite nugget from Blackstone",
   "death.attack.forgemaster.attacca": "%1$s felt the gods wrath from %2$s",
   "death.attack.forgemaster.attacca.player": "%1$s was delivered judgement by %2$s",
   "death.attack.forgemaster.greek_fireball": "%1$s couldn't survive the dance floor",
   "death.attack.forgemaster.greek_fireball.player": "%1$s was unable to make it to the party because of %2$s"
+
 }

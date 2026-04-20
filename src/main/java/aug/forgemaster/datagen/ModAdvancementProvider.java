@@ -66,9 +66,46 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 )
                 .criterion("get_attacca", InventoryChangedCriterion.Conditions.items(ModItems.ATTACCA))
                 .build(Forgemaster.id("get_attacca"));
+        
+        AdvancementEntry getVulcaniteNug = Advancement.Builder.create()
+                .display(
+                        ModItems.VULCANITE_NUGGET,
+                        Text.translatable("advancements.forgemaster.get_vulcanite_nug.title"),
+                        Text.translatable("advancements.forgemaster.get_vulcanite_nug.description"),
+                        Identifier.of("textures/gui/advancements/backgrounds/netherrack.png"),
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        true
+                )
+                .criterion("get_vulcanite_nug", InventoryChangedCriterion.Conditions.items(ModItems.VULCANITE_NUGGET))
+                .build(Forgemaster.id("get_vulcanite_nug"));
+
+        AdvancementEntry getVulcaniteIng = Advancement.Builder.create()
+                .parent(getVulcaniteNug)
+                .display(
+                        ModItems.VULCANITE_INGOT,
+                        Text.translatable("advancements.forgemaster.get_vulcanite_ing.title"),
+                        Text.translatable("advancements.forgemaster.get_vulcanite_ing.description"),
+                )
+
+        AdvancementEntry getMirror = Advancement.Builder.create()
+                .display(
+                        ModItems.MIRROR_CHARM,
+                        Text.translatable("advancements.forgemaster.get_mirror.title"),
+                        Text.translatable("advancements.forgemaster.get_mirror.description"),
+                        Identifier.of("textures/gui/advancements/backgrounds/end.png"),
+                        AdvancementFrame.GOAL,
+                        true,
+                        true,
+                        true
+                )
+                .criterion("get_charm", InventoryChangedCriterion.Conditions.items(ModItems.MIRROR_CHARM))
+                .build(Forgemaster.id("get_charm"));
 
         consumer.accept(getShard);
         consumer.accept(getBrokenBlade);
         consumer.accept(getBlade);
+        consumer.accept(getCharm);
     }
 }

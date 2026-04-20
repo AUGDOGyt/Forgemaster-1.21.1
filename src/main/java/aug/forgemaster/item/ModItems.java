@@ -18,6 +18,9 @@ public class ModItems {
 
     public static final Item ATTACCA = registerItem("attacca", new AttaccaItem(ToolMaterials.NETHERITE, new Item.Settings().fireproof().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 4, -2.8f)).component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("item.forgemaster.attacca.desc"))))));
 
+    public static final Item VULCANITE_NUGGET = registerItem("vulcanite_nugget", new Item(new Item.Settings().fireproof().component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("item.forgemaster.vulcanite_nugget.desc"))))));
+    public static final Item VULCANITE_INGOT = registerItem("vulcanite_ingot", new Item(new Item.Settings().fireproof().component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("item.forgemaster.vulcanite_ingot.desc"))))));
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Forgemaster.id(name), item);
     }
