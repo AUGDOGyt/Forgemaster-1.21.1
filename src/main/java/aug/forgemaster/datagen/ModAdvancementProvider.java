@@ -67,7 +67,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 .criterion("get_attacca", InventoryChangedCriterion.Conditions.items(ModItems.ATTACCA))
                 .build(Forgemaster.id("get_attacca"));
         
-        AdvancementEntry getVulcaniteNug = Advancement.Builder.create()
+        /*AdvancementEntry getVulcaniteNug = Advancement.Builder.create()
                 .display(
                         ModItems.VULCANITE_NUGGET,
                         Text.translatable("advancements.forgemaster.get_vulcanite_nug.title"),
@@ -101,11 +101,11 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         true
                 )
                 .criterion("get_charm", InventoryChangedCriterion.Conditions.items(ModItems.MIRROR_CHARM))
-                .build(Forgemaster.id("get_charm"));
+                .build(Forgemaster.id("get_charm"));*/
 
         consumer.accept(getShard);
         consumer.accept(getBrokenBlade);
         consumer.accept(getBlade);
-        consumer.accept(getCharm);
+        //consumer.accept(getCharm);
     }
 }
