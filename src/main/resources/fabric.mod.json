@@ -35,7 +35,7 @@
     "minecraft": "~1.21.1",
     "java": ">=21",
     "fabric-api": "*",
-    "veil": "2.5.1"
+    "veil": "3.6.2"
   },
   "accessWidener": "forgemaster.accesswidener"
 }
