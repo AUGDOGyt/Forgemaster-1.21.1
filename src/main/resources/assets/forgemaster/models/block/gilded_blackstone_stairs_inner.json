@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/stairs_inner",
+  "textures": {
+    "particle": "minecraft:block/gilded_blackstone",
+    "bottom": "minecraft:block/gilded_blackstone",
+    "top": "minecraft:block/gilded_blackstone",
+    "side": "minecraft:block/gilded_blackstone"
+  }
+}
+

@@ -4,6 +4,7 @@ import aug.forgemaster.Forgemaster;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.BlockItem;
@@ -26,6 +27,12 @@ public class ModBlocks {
                     .emissiveLighting(Blocks::always)
             ), new Item.Settings().fireproof().component(DataComponentTypes.LORE, new LoreComponent(List.of(Text.translatable("block.forgemaster.attacca_shard.desc")))));
     public static final Block GREEK_FIRE = registerBlock("greek_fire", new GreekFireBlock(AbstractBlock.Settings.copy(Blocks.FIRE)));
+
+    public static final Block GILDED_BLACKSTONE_STAIRS = registerBlockWithItem("gilded_blackstone_stairs",
+            new StairsBlock(Blocks.GILDED_BLACKSTONE.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(0.5f)
+                    .sounds(BlockSoundGroup.GILDED_BLACKSTONE)
+            ));
 
     private static Block registerBlock(String name, Block block) {
         return Registry.register(Registries.BLOCK, Forgemaster.id(name), block);
