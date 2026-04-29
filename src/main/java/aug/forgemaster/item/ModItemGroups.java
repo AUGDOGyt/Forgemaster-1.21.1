@@ -23,6 +23,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BROKEN_ATTACCA);
                         entries.add(ModItems.ATTACCA);
                         entries.add(ModBlocks.GILDED_BLACKSTONE_STAIRS);
+                        entries.add(ModBlocks.GILDED_BLACKSTONE_SLAB);
                     }).build()
     );
 

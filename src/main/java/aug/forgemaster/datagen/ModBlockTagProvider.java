@@ -29,6 +29,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(
                         Blocks.TORCH, Blocks.WALL_TORCH,
                         Blocks.SOUL_TORCH, Blocks.SOUL_WALL_TORCH
-                );
+                )
+                .addOptionalTag(BlockTags.ALL_SIGNS);
     }
 }

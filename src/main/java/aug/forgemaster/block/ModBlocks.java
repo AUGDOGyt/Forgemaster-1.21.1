@@ -1,10 +1,7 @@
 package aug.forgemaster.block;
 
 import aug.forgemaster.Forgemaster;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.block.*;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.LoreComponent;
 import net.minecraft.item.BlockItem;
@@ -30,6 +27,12 @@ public class ModBlocks {
 
     public static final Block GILDED_BLACKSTONE_STAIRS = registerBlockWithItem("gilded_blackstone_stairs",
             new StairsBlock(Blocks.GILDED_BLACKSTONE.getDefaultState(), AbstractBlock.Settings.create()
+                    .strength(0.5f)
+                    .sounds(BlockSoundGroup.GILDED_BLACKSTONE)
+            ));
+
+    public static final Block GILDED_BLACKSTONE_SLAB = registerBlockWithItem("gilded_blackstone_slab",
+            new SlabBlock(AbstractBlock.Settings.create()
                     .strength(0.5f)
                     .sounds(BlockSoundGroup.GILDED_BLACKSTONE)
             ));

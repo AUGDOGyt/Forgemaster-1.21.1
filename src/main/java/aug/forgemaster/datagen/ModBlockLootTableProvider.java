@@ -15,5 +15,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(ModBlocks.ATTACCA_SHARD);
+        addDrop(ModBlocks.GILDED_BLACKSTONE_STAIRS);
+        addDrop(ModBlocks.GILDED_BLACKSTONE_SLAB);
     }
 }

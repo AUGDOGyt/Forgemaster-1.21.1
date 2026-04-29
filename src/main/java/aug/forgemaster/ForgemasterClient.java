@@ -110,22 +110,21 @@ public class ForgemasterClient implements ClientModInitializer {
         ParticleFactoryRegistry.getInstance().register(ModParticles.GREEK_FIRE, GreekFireParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(ModParticles.FIRE_SWEEP, SweepAttackParticle.Factory::new);
         WorldRenderEvents.AFTER_ENTITIES.register(context -> {
-            for (Entity entity : context.world().getEntities()) {
-                if (entity instanceof PlayerEntity player && player.getActiveItem().isOf(ModItems.ATTACCA)) {
-                    MatrixStack matrices = new MatrixStack();
-                    float tickDelta = context.tickCounter().getTickDelta(true);
+            PlayerEntity player = context.gameRenderer().getClient().player;
+            if (player != null && player.getActiveItem().isOf(ModItems.ATTACCA)) {
+                MatrixStack matrices = new MatrixStack();
+                float tickDelta = context.tickCounter().getTickDelta(true);
 
-                    double x = MathHelper.lerp(tickDelta, entity.lastRenderX, entity.getX());
-                    double y = MathHelper.lerp(tickDelta, entity.lastRenderY, entity.getY());
-                    double z = MathHelper.lerp(tickDelta, entity.lastRenderZ, entity.getZ());
+                double x = MathHelper.lerp(tickDelta, player.lastRenderX, player.getX());
+                double y = MathHelper.lerp(tickDelta, player.lastRenderY, player.getY());
+                double z = MathHelper.lerp(tickDelta, player.lastRenderZ, player.getZ());
 
-                    Vec3d origin = new Vec3d(x, y + entity.getStandingEyeHeight(), z).add(player.getRotationVec(tickDelta)).add(0, 0.25f, 0);
+                Vec3d origin = new Vec3d(x, y + player.getStandingEyeHeight(), z).add(player.getRotationVec(tickDelta)).add(0, 0.25f, 0);
 
-                    matrices.translate((float) -context.camera().getPos().x, (float) -context.camera().getPos().y, (float) -context.camera().getPos().z);
-                    matrices.translate(origin.x, origin.y, origin.z);
+                matrices.translate((float) -context.camera().getPos().x, (float) -context.camera().getPos().y, (float) -context.camera().getPos().z);
+                matrices.translate(origin.x, origin.y, origin.z);
 
-                    GreekFireballEntityRenderer.render(player.age, MathHelper.clamp((player.getItemUseTime() + tickDelta) / 3, 0, AttaccaItem.MAX_FIREBALL_CHARGE) / AttaccaItem.MAX_FIREBALL_CHARGE, tickDelta, Objects.requireNonNull(context.consumers()), matrices);
-                }
+                GreekFireballEntityRenderer.render(player.age, MathHelper.clamp((player.getItemUseTime() + tickDelta) / 3, 0, AttaccaItem.MAX_FIREBALL_CHARGE) / AttaccaItem.MAX_FIREBALL_CHARGE, tickDelta, Objects.requireNonNull(context.consumers()), matrices);
             }
         });
     }

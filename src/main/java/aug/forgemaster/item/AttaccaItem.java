@@ -1,5 +1,6 @@
 package aug.forgemaster.item;
 
+import aug.forgemaster.Forgemaster;
 import aug.forgemaster.effect.ModEffects;
 import aug.forgemaster.enchantment.ModEnchantmentEffects;
 import aug.forgemaster.entity.GreekFireballEntity;
@@ -68,12 +69,28 @@ public class AttaccaItem extends SwordItem implements DualModelItem {
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (stack.getOrDefault(ModItemComponentTypes.ATTACCA_CHARGE, 0) >= AttaccaItem.MAX_CAPACITY) {
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.SPARKED, 300));
-            stack.set(ModItemComponentTypes.ATTACCA_CHARGE, 0);
+        World world = attacker.getWorld();
+        if (world.isClient) {
+            return true;
         }
 
-        target.setOnFireFor(5);
+        try {
+            int charge = stack.getOrDefault(ModItemComponentTypes.ATTACCA_CHARGE, 0);
+            
+            if (charge >= AttaccaItem.MAX_CAPACITY) {
+                target.addStatusEffect(new StatusEffectInstance(ModEffects.SPARKED, 300));
+            }
+
+            target.setOnFireFor(5);
+            
+            // Consume charge on hit - do this last to avoid conflicts
+            if (charge > 0) {
+                stack.set(ModItemComponentTypes.ATTACCA_CHARGE, charge - 1);
+            }
+        } catch (Exception e) {
+            // Silently fail if there's an issue with the stack modification
+            Forgemaster.LOGGER.warn("Failed to modify Attacca charge on hit", e);
+        }
 
         return true;
     }
